@@ -103,8 +103,28 @@ router.delete('/:bedId', Response.restrict, function(req, res) {
 
 //PUT a bed's state (toggle state)
 router.put('/:bedId/state', Response.restrict, function(req, res) {
-    var state = "";
     var bedId = req.params.bedId;
+    
+    var updateBed = function(state){
+        Bed.findOneAndUpdate({
+            _id: bedId
+        }, {
+            $set: {
+                "state": state
+            }
+        }, function(err, bed) {
+            if (err) {
+                Response.sendErr(res, 500, 'An unknown error occurred.');
+            }
+            if (!bed) {
+                Response.sendErr(res, 404, 'Bed not found');
+            } else {
+                Response.sendSuccess(res, {
+                    bed: bed
+                });
+            }
+        });
+    }
     
     Bed.findOne({
         _id: bedId
@@ -113,29 +133,12 @@ router.put('/:bedId/state', Response.restrict, function(req, res) {
             Response.sendErr(res, 500, 'An unknown error occurred.');
         } else {
             if (bed.state === "up") {
-                state = "down";
+                var state = "down";
+                updateBed(state);
             } else {
-                state = "up";
+                var state = "up";
+                updateBed(state);
             }
-        }
-    });
-    
-    Bed.findOneAndUpdate({
-        _id: bedId
-    }, {
-        $set: {
-            "state": state
-        }
-    }, function(err, bed) {
-        if (err) {
-            Response.sendErr(res, 500, 'An unknown error occurred.');
-        }
-        if (!bed) {
-            Response.sendErr(res, 404, 'Bed not found');
-        } else {
-            Response.sendSuccess(res, {
-                bed: bed
-            });
         }
     });
 });

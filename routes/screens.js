@@ -103,8 +103,28 @@ router.delete('/:screenId', Response.restrict, function(req, res) {
 
 //PUT a screen's state (toggle state)
 router.put('/:screenId/state', Response.restrict, function(req, res) {
-    var state = "";
     var screenId = req.params.screenId;
+    
+    var updateScreen = function(state) {
+        Screen.findOneAndUpdate({
+            _id: screenId
+        }, {
+            $set: {
+                "state": state
+            }
+        }, function(err, screen) {
+            if (err) {
+                Response.sendErr(res, 500, 'An unknown error occurred.');
+            }
+            if (!screen) {
+                Response.sendErr(res, 404, 'Screen not found');
+            } else {
+                Response.sendSuccess(res, {
+                    screen: screen
+                });
+            }
+        });
+    }
     
     Screen.findOne({
         _id: screenId
@@ -113,29 +133,12 @@ router.put('/:screenId/state', Response.restrict, function(req, res) {
             Response.sendErr(res, 500, 'An unknown error occurred.');
         } else {
             if (screen.state === "up") {
-                state = "down";
+                var state = "down";
+                updateScreen(state);
             } else {
-                state = "up";
+                var state = "up";
+                updateScreen(state);
             }
-        }
-    });
-    
-    Screen.findOneAndUpdate({
-        _id: screenId
-    }, {
-        $set: {
-            "state": state
-        }
-    }, function(err, screen) {
-        if (err) {
-            Response.sendErr(res, 500, 'An unknown error occurred.');
-        }
-        if (!screen) {
-            Response.sendErr(res, 404, 'Screen not found');
-        } else {
-            Response.sendSuccess(res, {
-                screen: screen
-            });
         }
     });
 });

@@ -103,8 +103,28 @@ router.delete('/:tableId', Response.restrict, function(req, res) {
 
 //PUT a table's state (toggle state)
 router.put('/:tableId/state', Response.restrict, function(req, res) {
-    var state = "";
     var tableId = req.params.tableId;
+    
+    var updateTable = function(state) {
+        Table.findOneAndUpdate({
+            _id: tableId
+        }, {
+            $set: {
+                "state": state
+            }
+        }, function(err, table) {
+            if (err) {
+                Response.sendErr(res, 500, 'An unknown error occurred.');
+            }
+            if (!table) {
+                Response.sendErr(res, 404, 'Table not found');
+            } else {
+                Response.sendSuccess(res, {
+                    table: table
+                });
+            }
+        });
+    }
     
     Table.findOne({
         _id: tableId
@@ -113,29 +133,12 @@ router.put('/:tableId/state', Response.restrict, function(req, res) {
             Response.sendErr(res, 500, 'An unknown error occurred.');
         } else {
             if (table.state === "closed") {
-                state = "open";
+                var state = "open";
+                updateTable(state);
             } else {
-                state = "closed";
+                var state = "closed";
+                updateTable(state);
             }
-        }
-    });
-    
-    Table.findOneAndUpdate({
-        _id: tableId
-    }, {
-        $set: {
-            "state": state
-        }
-    }, function(err, table) {
-        if (err) {
-            Response.sendErr(res, 500, 'An unknown error occurred.');
-        }
-        if (!table) {
-            Response.sendErr(res, 404, 'Table not found');
-        } else {
-            Response.sendSuccess(res, {
-                table: table
-            });
         }
     });
 });

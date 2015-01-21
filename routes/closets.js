@@ -103,8 +103,28 @@ router.delete('/:closetId', Response.restrict, function(req, res) {
 
 //PUT a closet's state (toggle state)
 router.put('/:closetId/state', Response.restrict, function(req, res) {
-    var state = "";
     var tableId = req.params.closetId;
+    
+    var updateCloset = function(state) {
+        Closet.findOneAndUpdate({
+            _id: closetId
+        }, {
+            $set: {
+                "state": state
+            }
+        }, function(err, closet) {
+            if (err) {
+                Response.sendErr(res, 500, 'An unknown error occurred.');
+            }
+            if (!closet) {
+                Response.sendErr(res, 404, 'Closet not found');
+            } else {
+                Response.sendSuccess(res, {
+                    closet: closet
+                });
+            }
+        });
+    }
     
     Closet.findOne({
         _id: closetId
@@ -113,29 +133,12 @@ router.put('/:closetId/state', Response.restrict, function(req, res) {
             Response.sendErr(res, 500, 'An unknown error occurred.');
         } else {
             if (closet.state === "closed") {
-                state = "open";
+                var state = "open";
+                updateCloset(state);
             } else {
-                state = "closed";
+                var state = "closed";
+                updateCloset(state);
             }
-        }
-    });
-    
-    Closet.findOneAndUpdate({
-        _id: closetId
-    }, {
-        $set: {
-            "state": state
-        }
-    }, function(err, closet) {
-        if (err) {
-            Response.sendErr(res, 500, 'An unknown error occurred.');
-        }
-        if (!closet) {
-            Response.sendErr(res, 404, 'Closet not found');
-        } else {
-            Response.sendSuccess(res, {
-                closet: closet
-            });
         }
     });
 });

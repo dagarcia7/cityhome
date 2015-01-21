@@ -109,8 +109,28 @@ router.delete('/:lightId', Response.restrict, function(req, res) {
 
 //PUT a light's state (toggle state)
 router.put('/:lightId/state', Response.restrict, function(req, res) {
-    var state = "";
     var lightId = req.params.lightId;
+    
+    var updateLight = function(state) {
+        Light.findOneAndUpdate({
+            _id: lightId
+        }, {
+            $set: {
+                "state": state
+            }
+        }, function(err, light) {
+            if (err) {
+                Response.sendErr(res, 500, 'An unknown error occurred.');
+            }
+            if (!light) {
+                Response.sendErr(res, 404, 'Light not found');
+            } else {
+                Response.sendSuccess(res, {
+                    light: light
+                });
+            }
+        });
+    }
     
     Light.findOne({
         _id: lightId
@@ -119,35 +139,15 @@ router.put('/:lightId/state', Response.restrict, function(req, res) {
             Response.sendErr(res, 500, 'An unknown error occurred.');
         } else {
             if (light.state === "off") {
-                console.log("GOT HERE");
                 var state = "on";
+                updateLight(state);
                 
             } else {
                 var state = "off";
+                updateLight(state);
             }
         }
-    });
-    
-    console.log(state);
-    
-    Light.findOneAndUpdate({
-        _id: lightId
-    }, {
-        $set: {
-            "state": state
-        }
-    }, function(err, light) {
-        if (err) {
-            Response.sendErr(res, 500, 'An unknown error occurred.');
-        }
-        if (!light) {
-            Response.sendErr(res, 404, 'Light not found');
-        } else {
-            Response.sendSuccess(res, {
-                light: light
-            });
-        }
-    });
+    }); 
 });
      
 //PUT an light's color
