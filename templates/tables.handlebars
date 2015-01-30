@@ -1,0 +1,61 @@
+<div id="tables">
+    <h1>Tables</h1>
+    
+    <span>
+        <button id="view-all-tables" class="btn btn-info">View All Tables</button>
+        <button id="open-tables" class="btn btn-info">View 'Open' Tables</button>
+        <button id="closed-tables" class="btn btn-info">View 'Closed' Tables</button>
+        <button id="create-new-table" class="btn btn-info">Create New Table</button>
+    </span>
+    <div>
+        <table class="table" id="tables-table">
+            <thead>
+                <th>Name: </th>
+                <th>State: </th>
+            </thead>
+            <tbody>
+                {{#each tables}}
+                    {{> table-thumbnail}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Edit Table Modal -->
+<div class="modal fade" id="modal-edit-table" tabindex="-1" role="dialog" aria-labelledby="modal-edit-table" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="edit-table-modal-title" style="text-align: center; font-size: 30px;">Edit Table Name</h4>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <form id="edit-table-form">
+            <input id="edit-table-form-id" class="display-none" name="tableId">
+            <input id="table-new-name" type="text" placeholder="Enter new table name here..." name="tableName" style="font-size: 20px;" required>
+            <input class="btn btn-info" type="submit" value="Change Name" style="width: 200px;"></input>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Create Table Modal -->
+<div class="modal fade" id="modal-create-table" tabindex="-1" role="dialog" aria-labelledby="modal-create-table" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="create-table-modal-title" style="text-align: center; font-size: 30px;">New Table</h4>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <form id="create-table-form">
+            <input id="create-table-name" type="text" placeholder="Table name" name="tableName" style="font-size: 20px;" required>
+            <input class="btn btn-info" type="submit" value="Create Table" style="width: 200px;"></input>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+

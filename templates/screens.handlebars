@@ -1,0 +1,61 @@
+<div id="screens">
+    <h1>Screens</h1>
+    
+    <span>
+        <button id="view-all-screens" class="btn btn-info">View All Screens</button>
+        <button id="raised-screens" class="btn btn-info">View 'Raised' Screens</button>
+        <button id="lowered-screens" class="btn btn-info">View 'Lowered' Screens</button>
+        <button id="create-new-screen" class="btn btn-info">Create New Screen</button>
+    </span>
+    <div>
+        <table class="table" id="screens-table">
+            <thead>
+                <th>Name: </th>
+                <th>State: </th>
+            </thead>
+            <tbody>
+                {{#each screens}}
+                    {{> screen-thumbnail}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Edit Screen Modal -->
+<div class="modal fade" id="modal-edit-screen" tabindex="-1" role="dialog" aria-labelledby="modal-edit-screen" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="edit-screen-modal-title" style="text-align: center; font-size: 30px;">Edit Screen Name</h4>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <form id="edit-screen-form">
+            <input id="edit-screen-form-id" class="display-none" name="screenId">
+            <input id="screen-new-name" type="text" placeholder="Enter new screen name here..." name="screenName" style="font-size: 20px;" required>
+            <input class="btn btn-info" type="submit" value="Change Name" style="width: 200px;"></input>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Create Screen Modal -->
+<div class="modal fade" id="modal-create-screen" tabindex="-1" role="dialog" aria-labelledby="modal-create-screen" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="create-screen-modal-title" style="text-align: center; font-size: 30px;">New Screen</h4>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <form id="create-screen-form">
+            <input id="create-screen-name" type="text" placeholder="Screen name" name="screenName" style="font-size: 20px;" required>
+            <input class="btn btn-info" type="submit" value="Create Screen" style="width: 200px;"></input>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+

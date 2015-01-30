@@ -1,0 +1,8 @@
+<tr class="closet-in-table">
+    <td>{{name}} | <a href="#" id="open-modal-edit-closet" data-closet-id={{_id}}>Edit name</a> | <a href="#" id="delete-closet" data-closet-id={{_id}}>Delete closet</a></td>
+    {{#ifCond state "open"}}
+    <td>{{state}} | <a href="#" id="close-closet" data-closet-id={{_id}}>Close closet</a></td>
+    {{else}}
+    <td>{{state}} | <a href="#" id="open-closet" data-closet-id={{_id}}>Open closet</a></td>
+    {{/ifCond}}
+</tr>

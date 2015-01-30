@@ -1,0 +1,9 @@
+<tr class="light-in-table">
+    <td>{{name}} | <a href="#" id="open-modal-edit-light" data-light-id={{_id}}>Edit name</a> | <a href="#" id="delete-light" data-light-id={{_id}}>Delete light</a></td>
+    <td>{{color}} | <a href="#" id="open-modal-edit-color" data-light-id={{_id}}>Edit color</a></td>
+    {{#ifCond state "on"}}
+    <td>{{state}} | <a href="#" id="turn-light-off" data-light-id={{_id}}>Turn light off</a></td>
+    {{else}}
+    <td>{{state}} | <a href="#" id="turn-light-on" data-light-id={{_id}}>Turn light on</a></td>
+    {{/ifCond}}
+</tr>

@@ -1,0 +1,8 @@
+<tr class="bed-in-table">
+    <td>{{name}} | <a href="#" id="open-modal-edit-bed" data-bed-id={{_id}}>Edit name</a> | <a href="#" id="delete-bed" data-bed-id={{_id}}>Delete bed</a></td>
+    {{#ifCond state "down"}}
+    <td>{{state}} | <a href="#" id="raise-bed" data-bed-id={{_id}}>Raise bed</a></td>
+    {{else}}
+    <td>{{state}} | <a href="#" id="lower-bed" data-bed-id={{_id}}>Lower bed</a></td>
+    {{/ifCond}}
+</tr>

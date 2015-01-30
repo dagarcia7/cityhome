@@ -1,0 +1,61 @@
+<div id="closets">
+    <h1>Closets</h1>
+    
+    <span>
+        <button id="view-all-closets" class="btn btn-info">View All Closets</button>
+        <button id="open-closets" class="btn btn-info">View 'Open' Closets</button>
+        <button id="closed-closets" class="btn btn-info">View 'Closed' Closets</button>
+        <button id="create-new-closet" class="btn btn-info">Create New Closet</button>
+    </span>
+    <div>
+        <table class="table" id="closets-table">
+            <thead>
+                <th>Name: </th>
+                <th>State: </th>
+            </thead>
+            <tbody>
+                {{#each closets}}
+                    {{> closet-thumbnail}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Edit Closet Modal -->
+<div class="modal fade" id="modal-edit-closet" tabindex="-1" role="dialog" aria-labelledby="modal-edit-closet" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="edit-closet-modal-title" style="text-align: center; font-size: 30px;">Edit Closet Name</h4>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <form id="edit-closet-form">
+            <input id="edit-closet-form-id" class="display-none" name="closetId">
+            <input id="closet-new-name" type="text" placeholder="Enter new closet name here..." name="closetName" style="font-size: 20px;" required>
+            <input class="btn btn-info" type="submit" value="Change Name" style="width: 200px;"></input>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Create Closet Modal -->
+<div class="modal fade" id="modal-create-closet" tabindex="-1" role="dialog" aria-labelledby="modal-create-closet" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="create-closet-modal-title" style="text-align: center; font-size: 30px;">New Closet</h4>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <form id="create-closet-form">
+            <input id="create-closet-name" type="text" placeholder="Closet name" name="closetName" style="font-size: 20px;" required>
+            <input class="btn btn-info" type="submit" value="Create Closet" style="width: 200px;"></input>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+

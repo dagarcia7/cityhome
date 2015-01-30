@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Light = require('../data/models/lights');
 var Response = require('../utils/response');
+var mongoose = require('mongoose');
 
 //POST a new light to the database with a name and color. State is automatically set to 'off'
 router.post('/', Response.restrict, function(req, res) {
@@ -188,6 +189,7 @@ router.put('/:lightId/name', Response.restrict, function(req, res) {
 	}
     
     var lightId = req.params.lightId;
+    var lightId = mongoose.Types.ObjectId(lightId);
     Light.findOneAndUpdate({
         _id: lightId
     }, {
@@ -197,9 +199,6 @@ router.put('/:lightId/name', Response.restrict, function(req, res) {
     }, function(err, light) {
         if (err) {
             Response.sendErr(res, 500, 'An unknown error occurred.');
-        }
-        if (!light) {
-            Response.sendErr(res, 404, 'Light not found');
         } else {
             Response.sendSuccess(res, {
                 light: light

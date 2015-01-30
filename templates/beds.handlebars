@@ -1,0 +1,61 @@
+<div id="beds">
+    <h1>Beds</h1>
+    
+    <span>
+        <button id="view-all-beds" class="btn btn-info">View All Beds</button>
+        <button id="raised-beds" class="btn btn-info">View 'Raised' Beds</button>
+        <button id="lowered-beds" class="btn btn-info">View 'Lowered' Beds</button>
+        <button id="create-new-bed" class="btn btn-info">Create New Bed</button>
+    </span>
+    <div>
+        <table class="table" id="beds-table">
+            <thead>
+                <th>Name: </th>
+                <th>State: </th>
+            </thead>
+            <tbody>
+                {{#each beds}}
+                    {{> bed-thumbnail}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Edit Bed Modal -->
+<div class="modal fade" id="modal-edit-bed" tabindex="-1" role="dialog" aria-labelledby="modal-edit-bed" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="edit-bed-modal-title" style="text-align: center; font-size: 30px;">Edit Bed Name</h4>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <form id="edit-bed-form">
+            <input id="edit-bed-form-id" class="display-none" name="bedId">
+            <input id="bed-new-name" type="text" placeholder="Enter new bed name here..." name="bedName" style="font-size: 20px;" required>
+            <input class="btn btn-info" type="submit" value="Change Name" style="width: 200px;"></input>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Create Bed Modal -->
+<div class="modal fade" id="modal-create-bed" tabindex="-1" role="dialog" aria-labelledby="modal-create-bed" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="create-bed-modal-title" style="text-align: center; font-size: 30px;">New Bed</h4>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <form id="create-bed-form">
+            <input id="create-bed-name" type="text" placeholder="Bed name" name="bedName" style="font-size: 20px;" required>
+            <input class="btn btn-info" type="submit" value="Create Bed" style="width: 200px;"></input>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -103,7 +103,7 @@ router.delete('/:closetId', Response.restrict, function(req, res) {
 
 //PUT a closet's state (toggle state)
 router.put('/:closetId/state', Response.restrict, function(req, res) {
-    var tableId = req.params.closetId;
+    var closetId = req.params.closetId;
     
     var updateCloset = function(state) {
         Closet.findOneAndUpdate({

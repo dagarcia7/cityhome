@@ -1,0 +1,12 @@
+<div id="login">
+  <h1>Welcome to CityHome! </h1>
+  <h2>Login</h2>
+  {{#if error}}
+    <div class="error">{{error}}</div>
+  {{/if}}
+  <form id="login-form">
+    <div>Username: <input type="text" name="username" required /></div>
+    <div>Password: <input type="password" name="password" style="margin-top:20px" required /></div>
+    <input type="submit" class="btn btn-primary"/>
+  </form>
+</div>

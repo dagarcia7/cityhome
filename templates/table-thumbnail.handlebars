@@ -1,0 +1,8 @@
+<tr class="table-in-table">
+    <td>{{name}} | <a href="#" id="open-modal-edit-table" data-table-id={{_id}}>Edit name</a> | <a href="#" id="delete-table" data-table-id={{_id}}>Delete table</a></td>
+    {{#ifCond state "open"}}
+    <td>{{state}} | <a href="#" id="close-table" data-table-id={{_id}}>Close table</a></td>
+    {{else}}
+    <td>{{state}} | <a href="#" id="open-table" data-table-id={{_id}}>Open table</a></td>
+    {{/ifCond}}
+</tr>

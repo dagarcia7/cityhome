@@ -1,0 +1,68 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.error {
+  color: #bf2c2c;
+}
+
+.display-none {
+    display: none;
+}
+
+#dashboard {
+    text-align: center;
+}
+
+#lights {
+    text-align: center;
+}
+
+#lights-table {
+    text-align: left;
+}
+
+#tables {
+    text-align: center;
+}
+
+#tables-table {
+    text-align: left;
+}
+
+#closets {
+    text-align: center;
+}
+
+#closets-table {
+    text-align: left;
+}
+
+#screens {
+    text-align: center;
+}
+
+#screens-table {
+    text-align: left;
+}
+
+#beds {
+    text-align: center;
+}
+
+#beds-table {
+    text-align: left;
+}
+
+#picker {
+	margin:0;
+	padding:0;
+	border:0;
+	width:150px;
+	height:25px;
+	border-right:20px solid green;
+	line-height:20px;
+    text-align: center;
+    font-size:20px;
+}

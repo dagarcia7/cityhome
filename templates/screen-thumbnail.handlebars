@@ -1,0 +1,8 @@
+<tr class="screen-in-table">
+    <td>{{name}} | <a href="#" id="open-modal-edit-screen" data-screen-id={{_id}}>Edit name</a> | <a href="#" id="delete-screen" data-screen-id={{_id}}>Delete screen</a></td>
+    {{#ifCond state "down"}}
+    <td>{{state}} | <a href="#" id="raise-screen" data-screen-id={{_id}}>Raise screen</a></td>
+    {{else}}
+    <td>{{state}} | <a href="#" id="lower-screen" data-screen-id={{_id}}>Lower screen</a></td>
+    {{/ifCond}}
+</tr>

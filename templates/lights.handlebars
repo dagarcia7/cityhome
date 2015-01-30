@@ -1,0 +1,82 @@
+<div id="lights">
+    <h1>Lights</h1>
+    
+    <span>
+        <button id="view-all-lights" class="btn btn-info">View All Lights</button>
+        <button id="on-lights" class="btn btn-info">View 'On' Lights</button>
+        <button id="off-lights" class="btn btn-info">View 'Off' Lights</button>
+        <button id="create-new-light" class="btn btn-info">Create New Light</button>
+    </span>
+    <div>
+        <table class="table" id="lights-table">
+            <thead>
+                <th>Name: </th>
+                <th>Color: </th>
+                <th>State: </th>
+            </thead>
+            <tbody>
+                {{#each lights}}
+                    {{> light-thumbnail}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Edit Light Modal -->
+<div class="modal fade" id="modal-edit-light" tabindex="-1" role="dialog" aria-labelledby="modal-edit-light" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="edit-light-modal-title" style="text-align: center; font-size: 30px;">Edit Light Name</h4>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <form id="edit-light-form">
+            <input id="edit-light-form-id" class="display-none" name="lightId">
+            <input id="light-new-name" type="text" placeholder="Enter new light name here..." name="lightName" style="font-size: 20px;" required>
+            <input class="btn btn-info" type="submit" value="Change Name" style="width: 200px;"></input>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Create Light Modal -->
+<div class="modal fade" id="modal-create-light" tabindex="-1" role="dialog" aria-labelledby="modal-create-light" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="create-light-modal-title" style="text-align: center; font-size: 30px;">New Light</h4>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <form id="create-light-form">
+            <input id="create-light-name" type="text" placeholder="Light name" name="lightName" style="font-size: 20px;" required>
+            <input id="create-light-color" type="text" placeholder="Light color" name="lightColor" style="font-size: 20px;" required>
+            <input class="btn btn-info" type="submit" value="Create Light" style="width: 200px;"></input>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Light Color Modal -->
+<div class="modal fade" id="modal-edit-light-color" tabindex="-1" role="dialog" aria-labelledby="modal-edit-light-color" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="edit-color-modal-title" style="text-align: center; font-size: 30px;">Edit Color</h4>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <form id="edit-light-color-form">
+            <input id="edit-light-color-form-id" class="display-none" name="lightId">
+<!--            <input id="create-light-name" type="text" placeholder="Light name" name="lightName" style="font-size: 20px;" required>-->
+            <input id="picker" type="text" name="lightColor"></input>
+            <input class="btn btn-info" type="submit" value="Change Color" style="width: 200px;"></input>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -32,8 +32,6 @@ router.post('/login', function (req, res) {
     User.findOne({username: username}, function (err, user) {
         if (user) {
             req.session.userId = user._id;
-            console.log("Checking route");
-            console.log(req.session.userId);
             var userSimple = {
                 username: user.username
             };
@@ -53,6 +51,20 @@ router.post('/logout', Response.restrict, function (req, res) {
         Response.sendSuccess(res);
     } else {
         Response.sendErr(res, 403, 'There is no user currently logged in.');
+    }
+});
+
+//GET Current User
+router.get('/current', function (req, res) {
+    if (req.session.userId) {
+        Response.sendSuccess(res, {
+            loggedIn: true,
+            user: req.session.userId
+        });
+    } else {
+        Response.sendSuccess(res, {
+            loggedIn: false
+        });
     }
 });
 

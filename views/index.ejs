@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>
-        <%=title %>
-    </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-    <h1>Welcome to <%= title %>!</h1>
-</body>
+  <head>
+    <title><%= title %></title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">    
+    <link href="/css/ripples.min.css" rel="stylesheet">
+    <link href="/css/material-wfont.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/css/main.css' />
+    <link rel="stylesheet" href="/css/colpick.css" type="text/css"/>
+      
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/javascripts/handlebars.runtime.js"></script>
+    <script src="/javascripts/material/colpick.js" type="text/javascript"></script>
+    <script src="/javascripts/templates.js"></script>
+    <script src="/javascripts/helpers.js"></script>
+    <script src="/javascripts/index.js"></script>
+    <script src="/javascripts/users.js"></script>
+    <script src="/javascripts/lights.js"></script>
+    <script src="/javascripts/tables.js"></script>
+    <script src="/javascripts/closets.js"></script>
+    <script src="/javascripts/screens.js"></script>
+    <script src="/javascripts/beds.js"></script>
+      
+  </head>
+  <body id="main-body">
+    <a href="#" id="home-link">Back to Home</a>
+    <div id="main-container"></div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>    
+    <script src="/javascripts/material/ripples.min.js"></script>
+    <script src="/javascripts/material/material.min.js"></script>
+    <script>
+            $(document).ready(function() {
+                $.material.init();
+            });
+    </script>  
+  </body>
 </html>
